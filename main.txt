@@ -1,0 +1,427 @@
+ 1 //GOMEZ MATIAS & MOHAMED RAFFIQUE ASFAR 1G
+
+
+ 2 #include <iostream> 
+3 #include<string> 
+4 #include <cstdlib> 
+
+
+#include <cstdio> 
+6 using namespace std; 
+7 
+8 int main() 
+9 { 
+
+
+string prenom; 
+11 string nomPC="Ordinateur"; 
+12 int MAX; 
+13 int MIN; 
+14 int depart; 
+
+
+joueur commencera à jouer 
+
+
+int i; 
+16 int nbVie=3; 
+17 char rejouer='o'; 
+18 
+19 string valeurJEU; 
+
+
+char tab[250]; 
+21 
+22 bool mult3; 
+23 bool mult5; 
+24 bool tourOrdi;
+
+
+ 26 while(rejouer=='o') 
+27 {
+
+
+//nom de joueur qui sera saisie par l'utilisateur
+//nom qui apparaitra lorsque l'ordinateur jouera
+//nombre Maximum qui sera saisie par le joueur
+//nombre minimum qui sera saisie par le joueur
+//variable qui nous permettra de savoir qui de l'ordinateur ou du 
+
+
+//nombre de vie du joueur de depart (3 au total)
+//variable de depart pour rejouer
+
+
+//variable pour conversion 
+
+
+//booléen pour les multiple de 3
+//booléen pour les multiple de 5
+
+
+ 28 cout << "Viens on joue !\n" << endl; //Premier message afficher 
+29 cout<<"Comment t'appelles-tu ?"<<endl; //On demande le prenom à l'utilsateur 
+
+
+cin>>prenom; //Saisie du prenom par l'utilsateur 
+31 
+32 //On demande de quel nombre à quel nombre l'ordianteur et le joueur joueront 
+33 cout<<"Donne moi la valeur minimale et maximale dans laquelles nous jouerons."<<endl; 
+34 cout<<"MIN= "; 
+
+
+cin>>MIN; //Saisie du minimum (du nombre de depart par 
+
+
+l'utilsateur)
+
+
+ 36 cout<<"MAX= "; 
+37 cin>>MAX; //Saisie du maximum (du dernier nombre à saisir dans le 
+
+
+jeu)
+
+
+ 38 
+39 /*Tant que l'utilisateur ne saisie pas un minimum ou un maximum 
+strictement positive, ou que le maximum n'est pas superieur au minimum faire...*/
+
+
+ 41 while(MAX<=0 || MIN<=0 || MIN>MAX) 
+42 { 
+43 //Si il n'a pas saisie un maximum strictement positive demander à l'utilisateur de le faire 
+44 if(MAX<=0) 
+
+
+{ 
+46 cout<<"Assurez vous que le maximum soit positive"<<endl; 
+47 cin>>MAX; 
+48 } 
+49 //Si il n'a pas saisie un minimum strictement positive demander à l'utilisateur de le faire 
+
+
+if(MIN<=0) 
+51 { 
+52 cout<<"Assurez vous que le minimum soit positive"<<endl; 
+53 cin>>MIN; 
+54 } 
+
+
+//Si il n'a pas saisie un maximum superieur au minimum demander à l'utilisateur de le faire
+
+
+ 56 if(MIN>MAX) 
+57 { 
+58 cout<<"Assurez vous que le maximum soit superieur au minimum SVP."<<endl; 
+59 cout<<"MIN= "; 
+
+
+cin>>MIN; 
+61 cout<<"MAX= "; 
+62 cin>>MAX; 
+63 } 
+
+
+
+ 64 } 
+65 
+66 //On demande qui de l'ordinateur ou du joueur sera le premier à jouer 
+67 cout<<"Je commence ou tu commences ?\n Si c'est moi qui commence tape '0' \n Si c'est toi qui commences 
+
+tape '1'"<<endl;
+
+
+ 68 cin>>depart; //saisie par l'utilsateur 
+69 
+70 //Tant que l'utilsateur n'a pas taper '0' ou '1' pour faire son choix... 
+71 while((depart!=0) && (depart!=1)) 
+72 { 
+73 //Redemander à l'utilsateur de taper '0' ou '1' pour faire son choix 
+74 cout<<"J'AI DIS !!! Si c'est moi qui commence tape '0' \n Si c'est toi qui commences tape '1'"<< 
+
+
+endl; 
+75 cin>>depart; //Saisie par l'utilisateur 
+76 } 
+77 
+78 tourOrdi= depart==0; //On affecte la valeur '0' qui veux dire que l'ordinateur commence 
+79 
+80 if(tourOrdi) //Si l'ordinateur commence... 
+81 cout<<"OK ! Alors je commence."<<endl; //Ecrire message 
+82 else //Dans le cas contraire... 
+83 cout<<"Super! Alors tu commences."<<endl; //Ecrire message 
+84 
+85 i=MIN; //On affecte la valeur minimal à i 
+86 
+87 while(i<=MAX) //Tant que i est inferieur ou égal au maximum entré 
+88 { 
+89 mult3= i%3 == 0; //le booleen mult3 est vrai dans le cas où i est divisible par 3 
+90 mult5= i%5 == 0; //le booleen mult5 est vrai dans le cas où i est divisible par 5 
+91 
+92 if(tourOrdi) //Si c'est le tour de l'Ordianteur faire... 
+93 { 
+94 if(mult3 && mult5) //Si le nombre i actuel est divisible par 3 et 5... 
+95 { 
+96 cout<<nomPC<<"> FizzBuzz"<<endl; //Afficher "Ordinateur> FizzBuzz 
+97 } 
+98 else if(mult3) //Si le nombre i actuel est divisible par 3... 
+99 { 
+
+
+100 cout<<nomPC<<"> Fizz"<<endl; //Afficher "Ordinateur> Fizz 
+101 } 
+102 else if(mult5) //Si le nombre i actuel est divisible par 5... 
+103 { 
+104 cout<<nomPC<<"> Buzz"<<endl; //Afficher "Ordinateur> Buzz 
+105 } 
+106 else //Si aucun des conditions precedentes ne sont presentes 
+107 
+108 cout<<nomPC<<"> "<<i<<endl; //Afficher "Ordianteur> (nombre i actuel de cette 
+
+
+boucle) 
+
+
+109 } 
+110 else //Si c'est le tour de l'utilisateur faire... 
+111 { 
+112 cout<<prenom<<"("<<nbVie<<" vies)"<<" > "; //Afficher "prenom de l'utilisateur (nombre de 
+
+
+vie)>" 
+
+
+113 cin>>valeurJEU; //Saisie de ma valeur que l'utilsateur pense 
+
+
+etre la bonne 
+
+
+114 
+115 
+116 //Si le nombre i actuel est divisible par 3 et 5 et que la valeur rentrer par l'utilsateur est 
+differrente de "FizzBuzz" faire... 
+
+
+117 if((mult3 && mult5) && valeurJEU!="FizzBuzz") 
+118 { 
+119 cout<<"ERREUR la reponse etait FizzBuzz"<<endl; //Afficher que l'utilisateur s'est 
+
+
+trompé 
+
+
+120 nbVie=nbVie-1; //Et enlever une vie 
+121 } 
+122 //Si le nombre i actuel est divisible par 3 et que la valeur rentrer par l'utilsateur est 
+
+
+
+differrente de "Fizz" faire... 
+
+
+123 else if(mult3 && valeurJEU!="Fizz") 
+
+
+124 { 
+
+
+125 cout<<"ERREUR la reponse etait Fizz"<<endl; //Afficher que l'utilisateur s'est 
+
+
+trompé 
+
+
+126 nbVie=nbVie-1; //Et enlever une vie 
+
+
+127 } 
+
+
+128 //Si le nombre i actuel est divisible par 5 et que la valeur rentrer par l'utilsateur est 
+
+
+differrente de "Buzz" faire... 
+
+
+129 else if(mult5 && valeurJEU!="Buzz") 
+
+
+130 { 
+
+
+131 cout<<"ERREUR la reponse etait Buzz"<<endl; //Afficher que l'utilisateur s'est 
+
+
+trompé 
+
+
+132 nbVie=nbVie-1; //Et enlever une vie 
+
+
+133 } 
+
+
+134 
+
+
+135 else if(!(mult3 || mult5)) //Si les conditions precedentes ne sont pas remplis 
+
+
+faire, et que le nombre i actuel n'est pas divisible par 3 ou 5 ni les deux 
+
+
+136 { 
+
+
+137 sprintf(tab,"%d",i); //conversion de int vers string et envoie le resultat 
+
+
+dans tab 
+
+
+138 if(valeurJEU!=tab) //Si la valeur entrer par l'utilisateur est differente 
+
+
+du nombre i de cette boucle 
+
+
+139 { 
+
+
+140 cout<<"ERREUR la reponse etait "<<i<<endl; //Afficher que l'utilisateur s'est 
+
+
+trompé 
+
+
+141 nbVie=nbVie-1; //Et enlever une vie 
+
+
+142 } 
+
+
+143 } 
+
+
+144 if(nbVie==0) //Lorsque le nombre de vie du joueur tombe à 0... 
+
+
+145 { 
+
+
+146 cout<<"Defaite :("<<endl; //Ecrire que l'utilisateur vien de perdre 
+
+
+147 i=MAX; //Et affecter la valeur MAX à i pour ainsi sortir de la 
+
+
+boucle 
+
+
+148 } 
+
+
+149 } 
+
+
+150 i=i+1; //Lorsque l'ordinateur ou le joueur a finis son tour 
+
+
+rajouter i+1 à la variable i 
+
+
+151 tourOrdi= !tourOrdi; //Affecter un NON(Ordinateur) pour que ce soit 
+
+
+maintenant le tour de l'utilsateur ou de l'ordinateur (selon qui commence) 
+
+
+152 } 
+
+
+153 
+
+
+154 if(nbVie>0) //Une fois i==MAX on sort de cette boucle, ce qui veut dire que le Joueur a 
+
+
+fini la partie sans perdre toutes ses vies 
+
+
+155 { 
+
+
+156 cout<<"\nVictoire :)\n"<<endl; //Afficher la victoire du joueur 
+
+
+157 } 
+
+
+158 
+
+
+159 cout<<"C'etait chouette on rejoue ? (o/n)"<<endl; //On demande si le joueur veux rejouer et de 
+
+
+repondre par 'o' pour oui ou par 'n' pour non 
+
+
+160 cin>>rejouer; //Saisie de la reponse par le joueur 
+
+
+161 
+
+
+162 while(rejouer!='o' && rejouer!='n') //Tant que l'utilisateur n'a pas reponsu par 
+
+
+'o' ou par 'n' faire... 
+
+
+163 { 
+
+
+164 cout<<"Veillez a repondre par 'o' pour oui ou 'n' pour non, merci."<<endl; //Demander a 
+
+
+saisir correctement par 'o' ou 'n' sa reponse 
+
+
+165 cin>>rejouer; //Saisie de la reponse de l'utilsateur 
+
+
+166 
+
+
+167 } 
+
+
+168 //Si il a repondu 'o' pour rejouer alors la boucle continue pas besoin de mettre de condition 
+
+
+169 
+
+
+170 if(rejouer=='n') //Si l'utilisateur a repondu 'n' pour ne pas rejouer... 
+
+
+171 { 
+
+
+172 rejouer='n'; //On change la valeur de la variable rejouer par 'n', ce qui termine la 
+
+
+boucle 
+
+
+
+173 } 
+174 } 
+175 cout<<"\nA la prochaine :)"<<endl; //Et pour finir on dit au revoir au joueur 
+176 return 0; //Le programme ce termine 
+177 } 
+
+
+
